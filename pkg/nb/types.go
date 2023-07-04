@@ -671,6 +671,14 @@ type ExternalConnectionInfo struct {
 	} `json:"usage"`
 }
 
+// This struct is used to map between the Azure secret CR fields and the API ones
+type AzureLogAccessKeysParams struct {
+	AzureTenantID	 string `json:"azure_tenant_id"`
+	AzureClientID	 string `json:"azure_client_id"`
+	AzureClientSecret string `json:"azure_client_secret"`
+	AzureLogsAnalyticsWorkspaceID string `json:"azure_logs_analytics_workspace_id"`
+}
+
 // AddExternalConnectionParams is the params of account_api.add_external_connection()
 type AddExternalConnectionParams struct {
 	Name         string          `json:"name"`
@@ -681,6 +689,7 @@ type AddExternalConnectionParams struct {
 	AuthMethod   CloudAuthMethod `json:"auth_method,omitempty"`
 	AWSSTSARN    string          `json:"aws_sts_arn,omitempty"`
 	Region       string          `json:"region,omitempty"`
+	AzureLogAccessKeys AzureLogAccessKeysParams `json:"azure_log_access_keys,omitempty"`
 }
 
 // CheckExternalConnectionParams is the params of account_api.check_external_connection()
@@ -693,6 +702,7 @@ type CheckExternalConnectionParams struct {
 	AuthMethod             CloudAuthMethod `json:"auth_method,omitempty"`
 	AWSSTSARN              string          `json:"aws_sts_arn,omitempty"`
 	IgnoreNameAlreadyExist bool            `json:"ignore_name_already_exist,omitempty"`
+	AzureLogAccessKeys AzureLogAccessKeysParams `json:"azure_log_access_keys,omitempty"`
 }
 
 // CheckExternalConnectionReply is the reply of account_api.check_external_connection()
@@ -709,6 +719,7 @@ type UpdateExternalConnectionParams struct {
 	Name     string `json:"name"`
 	Identity string `json:"identity"`
 	Secret   string `json:"secret"`
+	AzureLogAccessKeys AzureLogAccessKeysParams `json:"azure_log_access_keys,omitempty"`
 }
 
 // DeleteExternalConnectionParams is the params of account_api.delete_external_connection()
