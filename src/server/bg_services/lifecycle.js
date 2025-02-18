@@ -147,7 +147,6 @@ async function handle_bucket_rule(system, rule, j, bucket) {
             reply_objects
         );
     }
-    }
 
     bucket.lifecycle_configuration_rules[j].last_sync = Date.now();
     if (num_objects_deleted >= config.LIFECYCLE_BATCH_SIZE) should_rerun = true;
