@@ -102,7 +102,7 @@ async function handle_bucket_rule(system, rule, j, bucket) {
             (!notif.Events || _.some(notif.Events, event => event.includes(OP_TO_EVENT.lifecycle_delete.name))));
 
     // Check if rule.expiration.days is set - if it is, delete expired objects and delete markers
-    if (rule?.expiration?.days) {
+    if (rule.expiration?.days) {
         const res = await delete_expired_objects(system, bucket, rule, reply_objects);
         num_objects_deleted = res.num_objects_deleted;
         //dbg.log0("LIFECYCLE PROCESSING res =", res);
@@ -139,7 +139,7 @@ async function handle_bucket_rule(system, rule, j, bucket) {
 
     // Check if rule.AbortIncompleteMultipartUpload exists - 
     // if it does, delete incomplete parts if DaysAfterInitiation has passed
-    if (rule?.AbortIncompleteMultipartUpload?.DaysAfterInitiation) {
+    if (rule.AbortIncompleteMultipartUpload?.DaysAfterInitiation) {
         await delete_incomplete_multipart_uploads(
             system,
             bucket.name,
