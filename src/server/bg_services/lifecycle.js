@@ -67,6 +67,7 @@ async function delete_incomplete_multipart_uploads(system, bucket, rule, reply_o
 async function handle_bucket_rule(system, rule, j, bucket) {
     const now = Date.now();
     let should_rerun = false;
+    let num_objects_deleted = 0;
 
     if (rule.status !== 'Enabled') {
         dbg.log0('LIFECYCLE SKIP bucket:', bucket.name, '(bucket id:', bucket._id, ') rule', util.inspect(rule), 'not Enabled');

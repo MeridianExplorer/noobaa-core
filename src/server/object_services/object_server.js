@@ -1204,7 +1204,7 @@ async function list_uploads(req) {
         state.expiration_threshold = req.rpc_params.expiration_threshold;
     }
     while (!state.done) {
-        const results = await MDStore.instance().list_uploads(state);
+        const results = await list_uploads_func(state);
         _list_add_results(state, results);
     }
 
@@ -2129,6 +2129,7 @@ exports.update_object_md = update_object_md;
 // deletion
 exports.delete_object = delete_object;
 exports.delete_multiple_objects = delete_multiple_objects;
+exports.delete_incomplete_multiparts = delete_incomplete_multiparts;
 exports.delete_multiple_objects_by_filter = delete_multiple_objects_by_filter;
 exports.delete_multiple_objects_unordered = delete_multiple_objects_unordered;
 // listing
